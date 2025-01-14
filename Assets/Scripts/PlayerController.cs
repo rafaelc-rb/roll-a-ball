@@ -14,22 +14,24 @@ public class PlayerController : MonoBehaviour {
 
     [Header("UI Elements")]
     public TextMeshProUGUI countText;
-    public GameObject winTextObject;
+
+    [Header("Game Management")]
+    public GameManager gameManager; // Referência ao GameManager.
 
     private const int WinConditionCount = 12;
 
     void Start() {
         rb = GetComponent<Rigidbody>();
 
-        if (countText == null || winTextObject == null) {
-            Debug.LogError("UI elements are not assigned in the Inspector!");
+        // Verifica se os elementos foram atribuídos corretamente.
+        if (countText == null || gameManager == null) {
+            Debug.LogError("UI elements or GameManager not assigned!");
             enabled = false;
             return;
         }
 
         count = 0;
         UpdateCountText();
-        winTextObject.SetActive(false);
     }
 
     void Update() {
@@ -73,14 +75,16 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void DisplayWinText() {
-        winTextObject.SetActive(true);
-        winTextObject.GetComponent<TextMeshProUGUI>().text = "You Win!";
-        Destroy(GameObject.FindGameObjectWithTag("Enemy"));
+        if (gameManager != null) {
+            gameManager.ShowEndGameMenu(true, count); // Vitória com pontuação.
+        }
     }
 
     private void HandleGameOver() {
-        Destroy(gameObject);
-        winTextObject.SetActive(true);
-        winTextObject.GetComponent<TextMeshProUGUI>().text = "Game Over!";
+        if (gameManager != null) {
+            gameManager.ShowEndGameMenu(false, count); // Derrota com pontuação.
+        }
+
+        Destroy(gameObject); // Opcional: remove o jogador da cena.
     }
 }
