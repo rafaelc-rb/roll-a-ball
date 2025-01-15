@@ -19,7 +19,7 @@
             {
                 "type": "System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089",
                 "key": "buildOutputDirList",
-                "value": "{\"m_Value\":\"/Users/rafa/Desktop/workspace.nosync/personal/Roll-a-Ball/WebGL Builds;;;;;;;;;\"}"
+                "value": "{\"m_Value\":\"/Users/rafa/Desktop/workspace.nosync/personal/Roll-a-Ball/Build/roll_a_ball_v0-1_web;/Users/rafa/Desktop/workspace.nosync/personal/Roll-a-Ball/WebGL Builds;;;;;;;;\"}"
             }
         ]
     }
